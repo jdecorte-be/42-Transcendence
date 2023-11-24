@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  app:
+    depends_on:
+      - database
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - 3001:3001
+      - 3002:3002
+    networks:
+      - my_network
+    volumes:
+      - ./src:/app/src
+    env_file:
+      - stage.dev.env
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    networks:
+      - my_network
+    environment:
+      - POSTGRES_PASSWORD=postgres
+  front:
+    depends_on:
+      - database
+    build:
+      context: ../frontend/
+      dockerfile: ../frontend/Dockerfile
+      target: dev
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+    volumes:
+      - ../frontend:/frontend
+networks:
+  my_network:
+  
