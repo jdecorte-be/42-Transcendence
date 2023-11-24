@@ -29,7 +29,7 @@ function Pathing(){
         <Routes>
             <Route path='/Game' element={<GamePage/>}/>
             <Route path='/CoPage' element={<CoPage/>}/>
-            <Route path='/' element={<ConnectionPage/>}/>
+            {/* <Route path='/' element={<ConnectionPage/>}/> */}
             <Route path='/Lobby' element={<LobbyPage/>}/>
             <Route path='/GameWon' element={<GameWon Winner={''} Loser={''} scoreX={0} scoreY={0} date={undefined}/>}/>
             <Route path='/HomePage' element={<HomePage/>}/>
